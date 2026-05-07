@@ -3,148 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPB Industries</title>
+    <title>GPB Industries | Innovación Tecnológica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e' },
+                        accent: { 50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 300: '#c4b5fd', 400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9', 800: '#5b21b6', 900: '#4c1d95' }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #fff;
-            min-height: 100vh;
-        }
-        header {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 30px;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #00d4ff;
-        }
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-        }
-        .hero h1 {
-            font-size: 64px;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero p {
-            font-size: 24px;
-            color: #aaa;
-            margin-bottom: 40px;
-        }
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 18px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 60px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        .feature-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #00d4ff;
-        }
-        .feature-card p {
-            color: #aaa;
-            line-height: 1.6;
-        }
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.3);
-            margin-top: 60px;
-        }
-        footer p {
-            color: #666;
-        }
-        footer a {
-            color: #00d4ff;
-            text-decoration: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow-x: hidden; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6; }
+        .gradient-text { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.15); }
+        .glow { box-shadow: 0 0 60px rgba(14, 165, 233, 0.3); }
+        .btn-primary { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(14, 165, 233, 0.4); }
+        .fade-in { animation: fadeIn 0.8s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">GPB Industries</div>
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
-    </header>
+    <div id="canvas-container"></div>
 
-    <section class="hero" id="inicio">
-        <h1>Bienvenido a GPB Industries</h1>
-        <p>Innovación y excelencia en cada proyecto</p>
-        <a href="#contacto" class="cta-button">Contáctanos</a>
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 glass">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text">GPB Industries</div>
+            <div class="hidden md:flex gap-8">
+                <a href="#inicio" class="text-gray-300 hover:text-white transition">Inicio</a>
+                <a href="#servicios" class="text-gray-300 hover:text-white transition">Servicios</a>
+                <a href="#proyectos" class="text-gray-300 hover:text-white transition">Proyectos</a>
+                <a href="#contacto" class="text-gray-300 hover:text-white transition">Contacto</a>
+            </div>
+            <button class="md:hidden text-white">☰</button>
+        </div>
+    </nav>
+
+    <section id="inicio" class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-5xl mx-auto text-center fade-in">
+            <div class="inline-block px-4 py-1 rounded-full glass text-sm text-cyan-400 mb-6">Innovación sin límites</div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                <span class="gradient-text">Construimos</span><br>el futuro digital
+            </h1>
+            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                Transformamos ideas en soluciones tecnológicas innovadoras. Desarrollo web, software a medida y consultoría estratégica.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#contacto" class="btn-primary px-8 py-4 rounded-full text-white font-medium">Comenzar proyecto</a>
+                <a href="#servicios" class="glass px-8 py-4 rounded-full text-white font-medium hover:bg-white/10">Ver servicios</a>
+            </div>
+            
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="glass p-6 rounded-2xl">
+                    <div class="text-3xl font-bold gradient-text">50+</div>
+                    <div class="text-gray-400 text-sm">Proyectos</div>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <div class="text-3xl font-bold gradient-text">5+</div>
+                    <div class="text-gray-400 text-sm">Años experiencia</div>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <div class="text-3xl font-bold gradient-text">20+</div>
+                    <div class="text-gray-400 text-sm">Clientes</div>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <div class="text-3xl font-bold gradient-text">100%</div>
+                    <div class="text-gray-400 text-sm">Satisfacción</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="features" id="servicios">
-        <div class="feature-card">
-            <h3>Desarrollo Web</h3>
-            <p>Creamos sitios web modernos y responsivos adaptados a tus necesidades</p>
-        </div>
-        <div class="feature-card">
-            <h3>Software</h3>
-            <p>Soluciones de software personalizadas para tu negocio</p>
-        </div>
-        <div class="feature-card">
-            <h3>Consultoría</h3>
-            <p>Asesoría técnica para transformar tu empresa digitalmente</p>
+    <section id="servicios" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Nuestros <span class="gradient-text">Servicios</span></h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Ofrecemos soluciones tecnológicas integrales para impulsar tu negocio</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-2xl hover:glow transition-all duration-300 float" style="animation-delay: 0s;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Desarrollo Web</h3>
+                    <p class="text-gray-400 mb-4">Sitios web modernos, responsivos y optimizados para SEO. Tecnologías modernas con rendimiento excepcional.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• React / Vue / Next.js</li>
+                        <li>• Sitios responsivos</li>
+                        <li>• SEO optimizado</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-8 rounded-2xl hover:glow transition-all duration-300 float" style="animation-delay: 1s;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Desarrollo Software</h3>
+                    <p class="text-gray-400 mb-4">Aplicaciones personalizadas adaptadas a tus necesidades específicas.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Apps web y móvil</li>
+                        <li>• APIs RESTful</li>
+                        <li>• Bases de datos</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-8 rounded-2xl hover:glow transition-all duration-300 float" style="animation-delay: 2s;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Consultoría Tech</h3>
+                    <p class="text-gray-400 mb-4">Asesoría estratégica para transformar digitalmente tu empresa.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Arquitectura tech</li>
+                        <li>• DevOps & Cloud</li>
+                        <li>• Code review</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer id="contacto">
-        <p>&copy; 2026 GPB Industries. Todos los derechos reservados.</p>
-        <p>GitHub: <a href="https://github.com/gpb-industries">github.com/gpb-industries</a></p>
+    <section id="proyectos" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Proyectos <span class="gradient-text">Destacados</span></h2>
+                <p class="text-gray-400">Trabajos recientes que demuestran nuestra experiencia</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass rounded-2xl overflow-hidden group">
+                    <div class="h-48 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-cyan-400 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-400 text-sm">Tienda online completa con panel de administración</p>
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl overflow-hidden group">
+                    <div class="h-48 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-cyan-400 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-2">Dashboard Analytics</h3>
+                        <p class="text-gray-400 text-sm">Panel de visualización de datos en tiempo real</p>
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl overflow-hidden group">
+                    <div class="h-48 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-cyan-400 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-2">API Gateway</h3>
+                        <p class="text-gray-400 text-sm">Sistema de gestión de APIs con autenticación</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass rounded-3xl p-8 md:p-12 glow">
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl font-bold mb-4">¿Listo para <span class="gradient-text">Comenzar</span>?</h2>
+                    <p class="text-gray-400">Cuéntanos sobre tu proyecto y te contactaremos pronto</p>
+                </div>
+                
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Nombre</label>
+                            <input type="text" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition" placeholder="Tu nombre">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Email</label>
+                            <input type="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition" placeholder="tu@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Mensaje</label>
+                        <textarea class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition h-32" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full py-4 rounded-xl text-white font-semibold">Enviar mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <div class="text-xl font-bold gradient-text mb-2">GPB Industries</div>
+                <p class="text-gray-500 text-sm">Innovación tecnológica sin límites</p>
+            </div>
+            <div class="flex gap-6">
+                <a href="https://github.com/gpb-industries" class="text-gray-400 hover:text-white transition">GitHub</a>
+                <a href="https://github.com/gpb-industries" class="text-gray-400 hover:text-white transition">LinkedIn</a>
+                <a href="mailto:gpb.codes@gmail.com" class="text-gray-400 hover:text-white transition">Email</a>
+            </div>
+            <div class="text-gray-500 text-sm">© 2026 GPB Industries</div>
+        </div>
     </footer>
+
+    <script>
+        // Three.js Background
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+        
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 2000;
+        const posArray = new Float32Array(particlesCount * 3);
+        
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 50;
+        }
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0x0ea5e9,
+            transparent: true,
+            opacity: 0.8
+        });
+        
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        
+        // Create connections
+        const linesMaterial = new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.1 });
+        
+        camera.position.z = 5;
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX / window.innerWidth - 0.5;
+            mouseY = event.clientY / window.innerHeight - 0.5;
+        });
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            particlesMesh.rotation.y += 0.0005;
+            particlesMesh.rotation.x += 0.0002;
+            
+            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.05;
+            
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
