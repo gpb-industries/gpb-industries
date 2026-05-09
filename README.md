@@ -1,6 +1,6 @@
 # GPB Industries
 
-Sitio web corporativo de **GPB Industries**, una empresa de innovación tecnológica especializada en desarrollo web, software a medida y consultoría estratégica.
+Sitio web de **GPB Industries**, un proyecto de dos estudiantes de ingeniería informática apasionados por la tecnología y el desarrollo web.
 
 ## Características
 
@@ -8,10 +8,9 @@ Sitio web corporativo de **GPB Industries**, una empresa de innovación tecnoló
 - Animaciones 3D interactivas con Three.js (partículas, formas geométricas, nebulosa)
 - Diseño responsive optimizado para todos los dispositivos
 - Optimizado para SEO con meta tags y datos estructurados JSON-LD
-- Sección de proyectos, servicios, equipo, testimonios y blog
+- Sección de proyectos, servicios, equipo y FAQ
 - Formulario de contacto con validación
-- Rendimiento optimizado con lazy loading de Three.js
-- GitHub Actions para validación de HTML
+- GitHub Actions para validación de HTML y deploy a GitHub Pages
 
 ## Tecnologías
 
