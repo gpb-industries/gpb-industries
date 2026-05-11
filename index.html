@@ -1155,13 +1155,20 @@
         }
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     <script>
         window.addEventListener('load', () => {
             setTimeout(() => {
-                document.getElementById('loading-screen').classList.add('hidden');
-            }, 600);
+                const loader = document.getElementById('loading-screen');
+                if (loader) {
+                    loader.classList.add('hidden');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 800);
+                }
+            }, 2500);
         });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 
         const backToTop = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
