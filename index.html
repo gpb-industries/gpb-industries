@@ -4,1397 +4,255 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPB Industries | Innovación Tecnológica</title>
-    <meta name="description" content="GPB Industries - Transformamos ideas en soluciones tecnológicas innovadoras. Desarrollo web, software a medida y consultoría estratégica para empresas que buscan diferenciarse.">
-    <meta name="keywords" content="desarrollo web, software, consultoría, tecnología, innovación, gpb industries">
-    <meta name="author" content="GPB Industries">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="GPB Industries | Innovación Tecnológica">
-    <meta property="og:description" content="Transformamos ideas en soluciones tecnológicas innovadoras.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gpb-industries.netlify.app/">
-    <meta property="og:image" content="https://gpb-industries.netlify.app/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GPB Industries | Innovación Tecnológica">
-    <meta name="twitter:description" content="Transformamos ideas en soluciones tecnológicas innovadoras.">
-    <meta name="theme-color" content="#0a0a0f">
-    <link rel="canonical" href="https://gpb-industries.netlify.app/">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23a855f7'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0f'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='45' fill='url(%23g)'%3EGP%3C/text%3E%3C/svg%3E">
-
+    <meta name="description" content="GPB Industries - Transformamos ideas en soluciones tecnológicas innovadoras.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "GPB Industries",
-        "description": "Transformamos ideas en soluciones tecnológicas innovadoras.",
-        "url": "https://gpb-industries.netlify.app/",
-        "email": "contacto@gpbindustries.com",
-        "founder": [
-            { "@type": "Person", "name": "Gabriel Pedreros", "url": "https://www.instagram.com/gabrielpedreros.tech/" },
-            { "@type": "Person", "name": "Pablo Cocio", "url": "https://www.instagram.com/pablo_cocio/" }
-        ],
-        "sameAs": [
-            "https://github.com/gpb-industries",
-            "https://www.instagram.com/gabrielpedreros.tech/",
-            "https://www.instagram.com/pablo_cocio/"
-        ]
-    }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            50: '#faf5ff', 100: '#f3e8ff', 200: '#e9d5ff', 300: '#d8b4fe', 400: '#c084fc', 500: '#a855f7', 600: '#9333ea', 700: '#7e22ce', 800: '#6b21a8', 900: '#581c87'
-                        },
-                        surface: {
-                            DEFAULT: '#0a0a0f', 50: '#121218', 100: '#1a1a24', 200: '#242430', 300: '#2e2e3c'
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'spin-slow': 'spin 8s linear infinite',
+                        brand: { 400: '#a855f7', 500: '#9333ea' },
+                        surface: { DEFAULT: '#0a0a0f', 50: '#121218' }
                     }
                 }
             }
         }
     </script>
-
     <style>
-        :root {
-            --primary: #a855f7;
-            --secondary: #ec4899;
-            --accent: #06b6d4;
-        }
-
+        :root { --primary: #a855f7; --secondary: #ec4899; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #0a0a0f;
-            color: #f8fafc;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: gradient-shift 5s ease infinite;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .glass-strong {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(32px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .glass-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glass-card:hover {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border-color: rgba(14, 165, 233, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 60px rgba(14, 165, 233, 0.1);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.35);
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-secondary::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(6, 182, 212, 0.5));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(14, 165, 233, 0.5);
-        }
-
-        .btn-secondary:hover::before {
-            opacity: 1;
-        }
-
-        .section-padding {
-            padding: 120px 0;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        .input-field {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .input-field:focus {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-        }
-
-        .input-field::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .nav-link {
-            position: relative;
-            color: rgba(255, 255, 255, 0.7);
-            transition: color 0.3s ease;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #fff;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .stat-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.5), transparent);
-        }
-
-        .project-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(to top, rgba(14, 165, 233, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .project-card:hover::after {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(139, 92, 246, 0.15));
-            border: 1px solid rgba(14, 165, 233, 0.2);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            cursor: pointer;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        #loading-screen {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: #0a0a0f;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        #loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .splash-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 28px;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 24px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            box-shadow: 0 0 60px rgba(168, 85, 247, 0.2), 0 0 100px rgba(236, 72, 153, 0.1);
-        }
-
-        .splash-logo::before {
-            content: '';
-            position: absolute;
-            inset: -50%;
-            background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.4), transparent 30%);
-            animation: rotate-splash 2s linear infinite;
-        }
-
-        .splash-logo::after {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, #0a0a0f 0%, #121218 100%);
-        }
-
-        @keyframes rotate-splash {
-            to { transform: rotate(360deg); }
-        }
-
-        .splash-logo-text {
-            position: relative;
-            z-index: 1;
-            font-size: 36px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5)); }
-            50% { filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8)); }
-        }
-
-        .splash-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .splash-subtext {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.2em;
-        }
-
-        .splash-progress {
-            width: 200px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin-top: 32px;
-            overflow: hidden;
-        }
-
-        .splash-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #a855f7, #ec4899, #06b6d4);
-            border-radius: 10px;
-            width: 0%;
-            animation: load-progress 2s ease-out forwards;
-        }
-
-        @keyframes load-progress {
-            to { width: 100%; }
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 50;
-            border: none;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.35);
-        }
-
-        .faq-question {
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .faq-question::after {
-            content: '+';
-            float: right;
-            font-size: 1.5rem;
-            color: var(--primary);
-            transition: transform 0.3s ease;
-        }
-
-        .faq-question.open::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            padding: 0 1.5rem;
-        }
-
-        .faq-answer.open {
-            max-height: 300px;
-            padding: 1rem 1.5rem 1.5rem;
-        }
-
-        #cookie-consent {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            max-width: 400px;
-            z-index: 100;
-            transform: translateY(120%);
-            transition: transform 0.5s ease;
-        }
-
-        #cookie-consent.show {
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .section-padding {
-                padding: 80px 0;
-            }
-            .scroll-indicator {
-                display: none;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            html { scroll-behavior: auto; }
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stagger-1 { transition-delay: 0.1s; }
-        .stagger-2 { transition-delay: 0.2s; }
-        .stagger-3 { transition-delay: 0.3s; }
-        .stagger-4 { transition-delay: 0.4s; }
-        .stagger-5 { transition-delay: 0.5s; }
-
-        .hero-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            animation: pulse-glow-hero 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse-glow-hero {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        .grid-pattern {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-        }
-
-        .shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shimmer::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            100% { left: 100%; }
-        }
-
-        .service-card-glow {
-            position: absolute;
-            bottom: -50%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-
-        .glass-card:hover .service-card-glow {
-            opacity: 1;
-        }
-
-        .logo-brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(168, 85, 247, 0.4);
-            font-weight: 800;
-            font-size: 14px;
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-glass {
-            position: relative;
-        }
-
-        .nav-glass::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(10, 10, 15, 0.9) 0%, rgba(10, 10, 15, 0.7) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        .gradient-border {
-            position: relative;
-        }
-
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.3), rgba(6, 182, 212, 0.5));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-
-        .testimonial-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-size: 120px;
-            font-family: Georgia, serif;
-            color: rgba(168, 85, 247, 0.1);
-            line-height: 1;
-        }
-
-        .badge-glow {
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.4;
-            animation: float-blob 10s ease-in-out infinite;
-        }
-
-        @keyframes float-blob {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0f; color: #f8fafc; }
+        .text-gradient { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+        .glass-card { background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.06); transition: all 0.3s; }
+        .glass-card:hover { transform: translateY(-4px); border-color: rgba(168,85,247,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        #loading-screen { position: fixed; inset: 0; z-index: 9999; background: #0a0a0f; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s; }
+        #loading-screen.hidden { opacity: 0; pointer-events: none; }
+        .splash-logo { width: 100px; height: 100px; border-radius: 24px; background: linear-gradient(135deg, #a855f7, #ec4899); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .splash-logo span { font-size: 32px; font-weight: 800; color: white; }
+        .splash-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: 0.1em; }
     </style>
 </head>
 <body class="antialiased">
-
-    <div id="loading-screen" role="status" aria-label="Cargando">
-        <div class="splash-logo">
-            <span class="splash-logo-text">GP</span>
-        </div>
-        <div class="splash-text">GPB-industries</div>
-        <div class="splash-subtext">Innovación tecnológica</div>
-        <div class="splash-progress">
-            <div class="splash-progress-bar"></div>
-        </div>
+    <div id="loading-screen">
+        <div class="splash-logo"><span>GP</span></div>
+        <div class="splash-text">GPB Industries</div>
     </div>
-    <div id="canvas-container" aria-hidden="true"></div>
-    <div class="noise-overlay" aria-hidden="true"></div>
 
-    <button class="back-to-top" id="back-to-top" aria-label="Volver arriba">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
-        </svg>
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 flex items-center justify-center cursor-pointer opacity-0 transition-opacity duration-300 z-50" aria-label="Volver arriba">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
     </button>
 
     <header>
-        <nav class="fixed top-0 left-0 right-0 z-50 nav-glass" role="navigation" aria-label="Navegación principal">
-            <div class="absolute inset-0 glass-strong"></div>
-            <div class="relative max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#inicio" class="logo-brand" aria-label="GPB Industries - Inicio">
-                    <div class="logo-icon">GP</div>
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#inicio" class="flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg bg-gradient-to-r from-purple-600 to-pink-500 flex items-center justify-center text-xs font-bold">GP</span>
                     <span class="text-xl font-bold text-gradient">GPB Industries</span>
                 </a>
-
-                <div class="hidden md:flex gap-10">
-                    <a href="#inicio" class="nav-link">Inicio</a>
-                    <a href="#servicios" class="nav-link">Servicios</a>
-                    <a href="#proyectos" class="nav-link">Proyectos</a>
-                    <a href="#equipo" class="nav-link">Equipo</a>
-                    <a href="#faq" class="nav-link">FAQ</a>
-                    <a href="#contacto" class="nav-link">Contacto</a>
+                <div class="hidden md:flex gap-8">
+                    <a href="#inicio" class="text-gray-400 hover:text-white transition text-sm font-medium">Inicio</a>
+                    <a href="#servicios" class="text-gray-400 hover:text-white transition text-sm font-medium">Servicios</a>
+                    <a href="#proyectos" class="text-gray-400 hover:text-white transition text-sm font-medium">Proyectos</a>
+                    <a href="#equipo" class="text-gray-400 hover:text-white transition text-sm font-medium">Equipo</a>
+                    <a href="#contacto" class="text-gray-400 hover:text-white transition text-sm font-medium">Contacto</a>
                 </div>
-
-                <button id="menu-toggle" class="md:hidden p-2 text-white" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+                <button id="menu-toggle" class="md:hidden p-2 text-white">☰</button>
             </div>
-
-            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 glass-strong border-t border-white/5" role="menu">
-                <div class="px-6 py-4 flex flex-col gap-4">
-                    <a href="#inicio" class="nav-link" role="menuitem">Inicio</a>
-                    <a href="#servicios" class="nav-link" role="menuitem">Servicios</a>
-                    <a href="#proyectos" class="nav-link" role="menuitem">Proyectos</a>
-                    <a href="#equipo" class="nav-link" role="menuitem">Equipo</a>
-                    <a href="#faq" class="nav-link" role="menuitem">FAQ</a>
-                    <a href="#contacto" class="nav-link" role="menuitem">Contacto</a>
-                </div>
+            <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col gap-3">
+                <a href="#inicio" class="text-gray-400 hover:text-white">Inicio</a>
+                <a href="#servicios" class="text-gray-400 hover:text-white">Servicios</a>
+                <a href="#proyectos" class="text-gray-400 hover:text-white">Proyectos</a>
+                <a href="#equipo" class="text-gray-400 hover:text-white">Equipo</a>
+                <a href="#contacto" class="text-gray-400 hover:text-white">Contacto</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-labelledby="hero-title">
-            <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-                <div class="grid-pattern"></div>
-                <div class="hero-glow"></div>
-                <div class="blob w-[400px] h-[400px] bg-brand-500/20 -top-40 -right-40"></div>
-                <div class="blob w-[350px] h-[350px] bg-brand-500/15 -bottom-32 -left-32" style="animation-delay: -3s;"></div>
-                <div class="blob w-[250px] h-[250px] bg-cyan-500/10 top-1/2 left-1/4" style="animation-delay: -5s;"></div>
-            </div>
-
-            <div class="relative max-w-5xl mx-auto text-center px-6">
-                <div class="inline-flex items-center gap-2 px-5 py-2.5 glass rounded-full mb-8 badge-glow">
-                    <span class="w-2.5 h-2.5 rounded-full bg-brand-400 animate-pulse" aria-hidden="true"></span>
-                    <span class="text-sm text-gray-300 font-medium">Transformando ideas en realidad</span>
+        <section id="inicio" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
+            <div class="relative max-w-4xl mx-auto text-center px-6 py-32">
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8">
+                    <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                    <span class="text-sm text-gray-300">Transformando ideas en realidad</span>
                 </div>
-
-                <h1 id="hero-title" class="hero-title mb-8">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
                     <span class="text-gradient">Construimos</span><br>
                     <span class="text-white">el futuro digital</span>
                 </h1>
-
-                <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-                    Somos estudiantes de ingeniería informática apasionados por la tecnología.
-                    Creamos soluciones web modernas mientras aprendemos y crecemos junto a cada proyecto.
+                <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
+                    Estudiantes de ingeniería informática apasionados por la tecnología. Creamos soluciones web modernas.
                 </p>
-
-                <div class="flex flex-wrap gap-4 justify-center mb-20">
-                    <a href="#contacto" class="btn-primary px-8 py-4 rounded-xl text-white font-semibold">
-                        Iniciar proyecto
-                    </a>
-                    <a href="#servicios" class="btn-secondary px-8 py-4 rounded-xl text-white font-medium">
-                        Descubrir servicios
-                    </a>
+                <div class="flex gap-4 justify-center">
+                    <a href="#contacto" class="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:opacity-90 transition">Iniciar proyecto</a>
+                    <a href="#servicios" class="px-8 py-3 rounded-xl glass text-white font-medium hover:bg-white/5 transition">Servicios</a>
                 </div>
-
-                <div class="grid grid-cols-2 gap-4 md:gap-6 max-w-md mx-auto">
-                    <div class="stat-card glass-card p-6 rounded-2xl">
-                        <div class="text-3xl md:text-4xl font-bold text-gradient mb-1">5+</div>
-                        <div class="text-gray-500 text-sm">Proyectos completados</div>
-                    </div>
-                    <div class="stat-card glass-card p-6 rounded-2xl">
-                        <div class="text-3xl md:text-4xl font-bold text-gradient mb-1">100%</div>
-                        <div class="text-gray-500 text-sm">Compromiso</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="scroll-indicator" onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})" aria-label="Desplazar hacia abajo">
-                <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                </svg>
             </div>
         </section>
 
-        <section id="servicios" class="section-padding relative" aria-labelledby="servicios-title">
-            <div class="max-w-7xl mx-auto px-6">
+        <section id="servicios" class="py-20 px-6">
+            <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-16">
-                    <span class="text-brand-400 text-sm font-medium uppercase tracking-wider mb-4 block">Lo que hacemos</span>
-                    <h2 id="servicios-title" class="section-title text-white mb-6">
-                        Nuestros <span class="text-gradient">Servicios</span>
-                    </h2>
-                    <p class="text-gray-400 max-w-xl mx-auto text-lg">
-                        Ofrecemos soluciones tecnológicas adaptadas a tus necesidades. Entregamos calidad y dedicación en cada proyecto.
-                    </p>
+                    <span class="text-purple-400 text-sm font-medium uppercase tracking-wider">Lo que hacemos</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-4">Nuestros <span class="text-gradient">Servicios</span></h2>
                 </div>
-
-                <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-                    <article class="glass-card p-8 rounded-2xl gradient-border shimmer">
-                        <div class="service-card-glow"></div>
-                        <div class="feature-icon mb-6 relative z-10">
-                            <svg class="w-7 h-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0 3-4.03 3-9s-1.343-9-3-9m-9 9a9 9 0 019-9"/>
-                            </svg>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <article class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0 3-4.03 3-9s-1.343-9-3-9"/></svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-white mb-3 relative z-10">Desarrollo Web</h3>
-                        <p class="text-gray-400 mb-6 relative z-10">Creamos sitios web modernos, responsivos y optimizados para SEO. Utilizamos las últimas tecnologías para garantizar rendimiento excepcional.</p>
-                        <ul class="space-y-2 text-sm text-gray-500 relative z-10">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>React / Next.js / Vue.js</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Diseño responsivo</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>SEO avanzado</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Websockets & tiempo real</li>
-                        </ul>
+                        <h3 class="text-xl font-semibold text-white mb-3">Desarrollo Web</h3>
+                        <p class="text-gray-400 text-sm">Sitios web modernos, responsivos y optimizados. React, Next.js, Vue.js.</p>
                     </article>
-
-                    <article class="glass-card p-8 rounded-2xl gradient-border shimmer">
-                        <div class="service-card-glow"></div>
-                        <div class="feature-icon mb-6 relative z-10">
-                            <svg class="w-7 h-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                            </svg>
+                    <article class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-white mb-3 relative z-10">Desarrollo Software</h3>
-                        <p class="text-gray-400 mb-6 relative z-10">Desarrollamos aplicaciones personalizadas adaptadas a tus necesidades específicas. Desde APIs robustas hasta sistemas complejos.</p>
-                        <ul class="space-y-2 text-sm text-gray-500 relative z-10">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Aplicaciones web</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Apps móviles (iOS/Android)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>APIs RESTful & GraphQL</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Microservicios</li>
-                        </ul>
+                        <h3 class="text-xl font-semibold text-white mb-3">Desarrollo Software</h3>
+                        <p class="text-gray-400 text-sm">Aplicaciones personalizadas, APIs robustas y sistemas complejos.</p>
                     </article>
-
-                    <article class="glass-card p-8 rounded-2xl gradient-border shimmer">
-                        <div class="service-card-glow"></div>
-                        <div class="feature-icon mb-6 relative z-10">
-                            <svg class="w-7 h-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                            </svg>
+                    <article class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-white mb-3 relative z-10">Consultoría Tech</h3>
-                        <p class="text-gray-400 mb-6 relative z-10">Asesoría estratégica para transformar digitalmente tu empresa. Optimizamos procesos y mejoramos la eficiencia operativa.</p>
-                        <ul class="space-y-2 text-sm text-gray-500 relative z-10">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Arquitectura tecnológica</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>DevOps & Cloud (AWS/GCP/Azure)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Code review & auditing</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Transformación digital</li>
-                        </ul>
+                        <h3 class="text-xl font-semibold text-white mb-3">Consultoría Tech</h3>
+                        <p class="text-gray-400 text-sm">Asesoría estratégica, arquitectura tecnológica y transformación digital.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="proyectos" class="section-padding relative bg-surface-50/30" aria-labelledby="proyectos-title">
-            <div class="max-w-7xl mx-auto px-6">
+        <section id="proyectos" class="py-20 px-6 bg-surface-50/30">
+            <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-16">
-                    <span class="text-brand-400 text-sm font-medium uppercase tracking-wider mb-4 block">Nuestro trabajo</span>
-                    <h2 id="proyectos-title" class="section-title text-white mb-6">
-                        Proyectos <span class="text-gradient">Destacados</span>
-                    </h2>
-                    <p class="text-gray-400 max-w-xl mx-auto text-lg">
-                        Cada proyecto representa nuestro compromiso con la calidad y el aprendizaje continuo.
-                    </p>
+                    <span class="text-purple-400 text-sm font-medium uppercase tracking-wider">Nuestro trabajo</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-4">Proyectos <span class="text-gradient">Destacados</span></h2>
                 </div>
-
-                <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="col-span-full text-center py-12">
-                        <div class="w-12 h-12 mx-auto mb-4 rounded-full border-2 border-brand-500/30 border-t-brand-500 animate-spin"></div>
-                        <p class="text-gray-500">Cargando proyectos...</p>
-                    </div>
-                </div>
-
-                <div id="projects-loading" class="hidden space-y-4">
-                    <div class="glass-card rounded-2xl p-6 animate-pulse">
-                        <div class="h-6 bg-surface-200 rounded w-1/3 mb-4"></div>
-                        <div class="h-4 bg-surface-200 rounded w-full mb-2"></div>
-                        <div class="h-4 bg-surface-200 rounded w-2/3"></div>
-                    </div>
-                </div>
-
-                <div class="text-center mt-12">
-                    <a href="https://github.com/gpb-industries" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 transition">
-                        <span>Ver todos los proyectos en GitHub</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
-                </div>
+                <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
         </section>
 
-        <section id="equipo" class="section-padding relative bg-surface-50/30" aria-labelledby="equipo-title">
-            <div class="max-w-7xl mx-auto px-6">
+        <section id="equipo" class="py-20 px-6">
+            <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
-                    <span class="text-brand-400 text-sm font-medium uppercase tracking-wider mb-4 block">Nuestro equipo</span>
-                    <h2 id="equipo-title" class="section-title text-white mb-6">
-                        Las personas <span class="text-gradient">detrás</span>
-                    </h2>
-                    <p class="text-gray-400 max-w-xl mx-auto text-lg">
-                        Un equipo apasionado por la tecnología, estudiando ingeniería informática y construyendo el futuro.
-                    </p>
+                    <span class="text-purple-400 text-sm font-medium uppercase tracking-wider">Nuestro equipo</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-4">Las personas <span class="text-gradient">detrás</span></h2>
                 </div>
-
-                <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6">
                     <article class="glass-card p-6 rounded-2xl text-center">
-                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-brand-500 to-brand-500 flex items-center justify-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center">
                             <span class="text-2xl font-bold text-white">GP</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-white mb-1">Gabriel Pedreros</h3>
-                        <p class="text-brand-400 text-sm mb-3">Fundador & Futuro Ingeniero Informático</p>
-                        <p class="text-gray-500 text-sm mb-4">Apasionado por el desarrollo web y las tecnologías modernas. Especializándose en frontend y backend.</p>
-                        <a href="https://www.instagram.com/gabrielpedreros.tech/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium hover:opacity-90 transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                            @gabrielpedreros.tech
-                        </a>
+                        <h3 class="text-lg font-semibold text-white">Gabriel Pedreros</h3>
+                        <p class="text-purple-400 text-sm mb-2">Fundador & Desarrollador</p>
+                        <p class="text-gray-500 text-sm">Apasionado por el desarrollo web y tecnologías modernas.</p>
                     </article>
-
                     <article class="glass-card p-6 rounded-2xl text-center">
-                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-brand-500 to-brand-500 flex items-center justify-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center">
                             <span class="text-2xl font-bold text-white">PC</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-white mb-1">Pablo Cocio</h3>
-                        <p class="text-brand-400 text-sm mb-3">UI Designer & Futuro Ingeniero Informático</p>
-                        <p class="text-gray-500 text-sm mb-4">Diseñador enfocado en experiencias de usuario excepcionales y frontend.</p>
-                        <a href="https://www.instagram.com/pablo_cocio/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium hover:opacity-90 transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                            @pablo_cocio
-                        </a>
+                        <h3 class="text-lg font-semibold text-white">Pablo Cocio</h3>
+                        <p class="text-purple-400 text-sm mb-2">UI Designer</p>
+                        <p class="text-gray-500 text-sm">Diseñador enfocado en experiencias de usuario excepcionales.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="faq" class="section-padding" aria-labelledby="faq-title">
-            <div class="max-w-3xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <span class="text-brand-400 text-sm font-medium uppercase tracking-wider mb-4 block">FAQ</span>
-                    <h2 id="faq-title" class="section-title text-white mb-6">
-                        Preguntas <span class="text-gradient">Frecuentes</span>
-                    </h2>
-                    <p class="text-gray-400 max-w-xl mx-auto text-lg">
-                        Respuestas a las dudas más comunes sobre nuestros servicios.
-                    </p>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="glass-card rounded-2xl overflow-hidden">
-                        <button class="faq-question w-full text-left px-6 py-5 text-white font-medium flex justify-between items-center" aria-expanded="false">
-                            ¿Cuánto tiempo toma desarrollar un sitio web?
-                        </button>
-                        <div class="faq-answer text-gray-400 text-sm" hidden>
-                            Nos tomamos el tiempo necesario para asegurar calidad. Generalmente entre 2 a 6 semanas dependiendo del alcance.
-                        </div>
+        <section id="contacto" class="py-20 px-6 bg-surface-50/30">
+            <div class="max-w-2xl mx-auto">
+                <div class="glass rounded-3xl p-8">
+                    <div class="text-center mb-8">
+                        <span class="text-purple-400 text-sm font-medium uppercase tracking-wider">Contacto</span>
+                        <h2 class="text-3xl font-bold text-white mt-4">¿Listo para <span class="text-gradient">construir</span>?</h2>
                     </div>
-                    <div class="glass-card rounded-2xl overflow-hidden">
-                        <button class="faq-question w-full text-left px-6 py-5 text-white font-medium flex justify-between items-center" aria-expanded="false">
-                            ¿Ofrecen soporte después de entregar el proyecto?
-                        </button>
-                        <div class="faq-answer text-gray-400 text-sm" hidden>
-                            Sí, ofrecemos soporte posterior a la entrega y estamos disponibles para ajustes y mejoras continuas.
+                    <form class="space-y-4" id="contact-form">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" id="nombre" class="w-full rounded-xl px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500" placeholder="Nombre" required>
+                            <input type="email" id="email" class="w-full rounded-xl px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500" placeholder="Email" required>
                         </div>
-                    </div>
-                    <div class="glass-card rounded-2xl overflow-hidden">
-                        <button class="faq-question w-full text-left px-6 py-5 text-white font-medium flex justify-between items-center" aria-expanded="false">
-                            ¿Trabajan con empresas internacionales?
-                        </button>
-                        <div class="faq-answer text-gray-400 text-sm" hidden>
-                            Actualmente estamos enfocados en proyectos locales y remotos dentro del país. Abriremos a clientes internacionales más adelante.
-                        </div>
-                    </div>
-                    <div class="glass-card rounded-2xl overflow-hidden">
-                        <button class="faq-question w-full text-left px-6 py-5 text-white font-medium flex justify-between items-center" aria-expanded="false">
-                            ¿Qué tecnologías utilizan principalmente?
-                        </button>
-                        <div class="faq-answer text-gray-400 text-sm" hidden>
-                            Usamos tecnologías modernas como React, Tailwind CSS, Node.js y Python. Nos adaptamos a lo que mejor se ajuste a cada proyecto.
-                        </div>
-                    </div>
-                    <div class="glass-card rounded-2xl overflow-hidden">
-                        <button class="faq-question w-full text-left px-6 py-5 text-white font-medium flex justify-between items-center" aria-expanded="false">
-                            ¿Cómo es el proceso de trabajo?
-                        </button>
-                        <div class="faq-answer text-gray-400 text-sm" hidden>
-                            Nuestro proceso: conversamos tus ideas, diseñamos una solución, desarrollamos con dedicación y te entregamos un producto funcional.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contacto" class="section-padding relative bg-surface-50/30" aria-labelledby="contacto-title">
-            <div class="max-w-4xl mx-auto px-6">
-                <div class="glass-strong rounded-3xl p-8 md:p-12">
-                    <div class="text-center mb-10">
-                        <span class="text-brand-400 text-sm font-medium uppercase tracking-wider mb-4 block">Contacto</span>
-                        <h2 id="contacto-title" class="section-title text-white mb-4">
-                            ¿Listo para <span class="text-gradient">construir</span>?
-                        </h2>
-                        <p class="text-gray-400">Cuéntanos sobre tu proyecto y te responderemos a la brevedad.</p>
-                    </div>
-
-                    <form class="space-y-6" id="contact-form" novalidate>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="nombre" class="block text-sm text-gray-400 mb-2">Nombre completo</label>
-                                <input type="text" id="nombre" class="input-field w-full rounded-xl px-4 py-3 text-white" placeholder="Juan Pérez" required autocomplete="name">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm text-gray-400 mb-2">Email</label>
-                                <input type="email" id="email" class="input-field w-full rounded-xl px-4 py-3 text-white" placeholder="juan@empresa.com" required autocomplete="email">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="empresa" class="block text-sm text-gray-400 mb-2">Empresa (opcional)</label>
-                            <input type="text" id="empresa" class="input-field w-full rounded-xl px-4 py-3 text-white" placeholder="Tu empresa" autocomplete="organization">
-                        </div>
-                        <div>
-                            <label for="tipo-proyecto" class="block text-sm text-gray-400 mb-2">Tipo de proyecto</label>
-                            <select id="tipo-proyecto" class="input-field w-full rounded-xl px-4 py-3 text-white">
-                                <option value="" class="text-gray-500">Selecciona una opción</option>
-                                <option value="web" class="text-black">Desarrollo Web</option>
-                                <option value="software" class="text-black">Desarrollo Software</option>
-                                <option value="consultoria" class="text-black">Consultoría</option>
-                                <option value="otro" class="text-black">Otro</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="mensaje" class="block text-sm text-gray-400 mb-2">Mensaje</label>
-                            <textarea id="mensaje" class="input-field w-full rounded-xl px-4 py-3 text-white h-32 resize-none" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full py-4 rounded-xl text-white font-semibold" id="submit-btn">
-                            Enviar mensaje
-                        </button>
-                        <p id="form-status" class="text-sm text-center mt-2 hidden" role="alert"></p>
+                        <textarea id="mensaje" class="w-full rounded-xl px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 h-32 resize-none" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:opacity-90 transition">Enviar mensaje</button>
+                        <p id="form-status" class="text-sm text-center hidden"></p>
                     </form>
-
-                    <div class="mt-10 pt-8 border-t border-white/5">
-                        <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-12">
-                            <a href="mailto:contacto@gpbindustries.com" class="flex items-center gap-3 text-gray-400 hover:text-brand-400 transition">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
-                                <span>contacto@gpbindustries.com</span>
-                            </a>
-                            <a href="https://github.com/gpb-industries" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-gray-400 hover:text-brand-400 transition">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 px-6 border-t border-white/5" role="contentinfo">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-center md:text-left">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="logo-icon" style="width:28px;height:28px;font-size:11px;">GP</div>
-                        <span class="text-xl font-bold text-gradient">GPB Industries</span>
-                    </div>
-                    <p class="text-gray-500 text-sm">Tecnología con propósito</p>
-                </div>
-
-                <nav class="flex gap-8" aria-label="Enlaces del footer">
-                    <a href="#inicio" class="text-gray-500 hover:text-white transition text-sm">Inicio</a>
-                    <a href="#servicios" class="text-gray-500 hover:text-white transition text-sm">Servicios</a>
-                    <a href="#proyectos" class="text-gray-500 hover:text-white transition text-sm">Proyectos</a>
-                    <a href="#contacto" class="text-gray-500 hover:text-white transition text-sm">Contacto</a>
-                </nav>
-
-                <div class="text-gray-500 text-sm">
-                    &copy; 2026 GPB Industries. Todos los derechos reservados.
-                </div>
+    <footer class="py-8 px-6 border-t border-white/5">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-gradient-to-r from-purple-600 to-pink-500 flex items-center justify-center text-[10px] font-bold">GP</span>
+                <span class="font-bold text-gradient">GPB Industries</span>
             </div>
+            <div class="text-gray-500 text-sm">© 2026 GPB Industries</div>
         </div>
     </footer>
 
-    <div id="cookie-consent" class="glass-strong rounded-2xl p-6" role="dialog" aria-label="Consentimiento de cookies">
-        <p class="text-gray-300 text-sm mb-4">Este sitio utiliza cookies para mejorar tu experiencia.</p>
-        <button onclick="acceptCookies()" class="btn-primary px-6 py-2 rounded-xl text-white text-sm font-medium w-full">
-            Aceptar
-        </button>
-    </div>
-
-    <script>
-        function toggleFaq(button) {
-            const isOpen = button.getAttribute('aria-expanded') === 'true';
-            const answer = button.nextElementSibling;
-            
-            document.querySelectorAll('.faq-question').forEach(btn => {
-                if (btn !== button) {
-                    btn.setAttribute('aria-expanded', 'false');
-                    btn.classList.remove('open');
-                    btn.nextElementSibling.hidden = true;
-                    btn.nextElementSibling.classList.remove('open');
-                }
-            });
-            
-            button.setAttribute('aria-expanded', !isOpen);
-            button.classList.toggle('open');
-            answer.hidden = isOpen;
-            answer.classList.toggle('open');
-        }
-
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => toggleFaq(button));
-        });
-
-        function acceptCookies() {
-            document.getElementById('cookie-consent').classList.remove('show');
-            localStorage.setItem('cookies-accepted', 'true');
-        }
-
-        if (!localStorage.getItem('cookies-accepted')) {
-            setTimeout(() => {
-                document.getElementById('cookie-consent').classList.add('show');
-            }, 2000);
-        }
-    </script>
-
     <script>
         setTimeout(() => {
-            document.getElementById('loading-screen').style.opacity = '0';
-            document.getElementById('loading-screen').style.visibility = 'hidden';
-            document.getElementById('loading-screen').style.pointerEvents = 'none';
+            document.getElementById('loading-screen').classList.add('hidden');
         }, 1500);
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 
         const backToTop = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        }, { passive: true });
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            backToTop.classList.toggle('opacity-100', window.scrollY > 300);
+            backToTop.classList.toggle('opacity-0', window.scrollY <= 300);
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
-        if (typeof THREE !== 'undefined') {
-            const container = document.getElementById('canvas-container');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            container.appendChild(renderer.domElement);
-
-            const purpleColor = 0xa855f7;
-            const pinkColor = 0xec4899;
-            const violetColor = 0x8b5cf6;
-
-            const particlesCount = 1500;
-            const positions = new Float32Array(particlesCount * 3);
-            const colors = new Float32Array(particlesCount * 3);
-
-            const colorPalette = [
-                new THREE.Color(purpleColor),
-                new THREE.Color(pinkColor),
-                new THREE.Color(violetColor),
-                new THREE.Color(0x06b6d4)
+        async function loadProjects() {
+            const grid = document.getElementById('projects-grid');
+            const projects = [
+                { name: 'gpb-industries-web', description: 'Landing page oficial de GPB Industries', language: 'HTML', url: '#' },
+                { name: 'portfolio-v1', description: 'Portafolio personal con React y Tailwind', language: 'JavaScript', url: '#' },
+                { name: 'api-rest-node', description: 'API RESTful con Node.js y Express', language: 'Node.js', url: '#' },
+                { name: 'ecommerce-app', description: 'Aplicación de e-commerce con Next.js', language: 'TypeScript', url: '#' },
+                { name: 'dashboard-admin', description: 'Panel de administración con React', language: 'JavaScript', url: '#' },
+                { name: 'mobile-app', description: 'App móvil con React Native', language: 'JavaScript', url: '#' }
             ];
 
-            for (let i = 0; i < particlesCount; i++) {
-                const i3 = i * 3;
-                positions[i3] = (Math.random() - 0.5) * 35;
-                positions[i3 + 1] = (Math.random() - 0.5) * 35;
-                positions[i3 + 2] = (Math.random() - 0.5) * 35;
-
-                const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-                colors[i3] = color.r;
-                colors[i3 + 1] = color.g;
-                colors[i3 + 2] = color.b;
-            }
-
-            const geometry = new THREE.BufferGeometry();
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-            const material = new THREE.PointsMaterial({
-                size: 0.04,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.8,
-                sizeAttenuation: true,
-                blending: THREE.AdditiveBlending
-            });
-
-            const particles = new THREE.Points(geometry, material);
-            scene.add(particles);
-
-            camera.position.z = 10;
-
-            let mouseX = 0;
-            let mouseY = 0;
-            let targetX = 0;
-            let targetY = 0;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX - window.innerWidth / 2) / 800;
-                mouseY = (e.clientY - window.innerHeight / 2) / 800;
-            }, { passive: true });
-
-            function animate() {
-                requestAnimationFrame(animate);
-
-                targetX += (mouseX - targetX) * 0.03;
-                targetY += (mouseY - targetY) * 0.03;
-
-                particles.rotation.y += 0.0003;
-                particles.rotation.x += 0.0001;
-
-                camera.position.x += (targetX * 3 - camera.position.x) * 0.03;
-                camera.position.y += (-targetY * 3 - camera.position.y) * 0.03;
-                camera.lookAt(scene.position);
-
-                renderer.render(scene, camera);
-            }
-
-            animate();
-
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            }, { passive: true });
-        }
-
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuToggle?.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            menuToggle.setAttribute('aria-expanded', !isHidden);
-        });
-
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.glass-card, .section-title, .feature-icon').forEach(el => {
-            el.classList.add('fade-in-up');
-            observer.observe(el);
-        });
-
-        document.getElementById('contact-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const button = document.getElementById('submit-btn');
-            const status = document.getElementById('form-status');
-            const nombre = document.getElementById('nombre').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const mensaje = document.getElementById('mensaje').value.trim();
-
-            if (!nombre || !email || !mensaje) {
-                status.textContent = 'Por favor completa todos los campos requeridos.';
-                status.className = 'text-sm text-center mt-2 text-red-400';
-                status.classList.remove('hidden');
-                return;
-            }
-
-            if (!email.includes('@') || !email.includes('.')) {
-                status.textContent = 'Por favor ingresa un email válido.';
-                status.className = 'text-sm text-center mt-2 text-red-400';
-                status.classList.remove('hidden');
-                return;
-            }
-
-            status.classList.add('hidden');
-            button.textContent = 'Enviando...';
-            button.disabled = true;
-
-            setTimeout(() => {
-                button.textContent = 'Mensaje enviado';
-                button.classList.add('bg-green-500');
-                button.classList.remove('btn-primary');
-                status.textContent = 'Gracias por contactarnos. Te responderemos a la brevedad.';
-                status.className = 'text-sm text-center mt-2 text-green-400';
-                status.classList.remove('hidden');
-                e.target.reset();
-                setTimeout(() => {
-                    button.textContent = 'Enviar mensaje';
-                    button.classList.remove('bg-green-500');
-                    button.classList.add('btn-primary');
-                    button.disabled = false;
-                    status.classList.add('hidden');
-                }, 4000);
-            }, 1500);
-        });
-
-        const sampleProjects = [
-            { name: 'gpb-industries-web', description: 'Landing page oficial de GPB Industries', language: 'HTML', stars: 2, url: 'https://github.com/gpb-industries/gpb-industries' },
-            { name: 'portfolio-v1', description: 'Portafolio personal desarrollado con React y Tailwind', language: 'JavaScript', stars: 1, url: 'https://github.com/gpb-industries/portfolio' },
-            { name: 'api-rest-node', description: 'API RESTful construida con Node.js y Express', language: 'Node.js', stars: 3, url: 'https://github.com/gpb-industries/api-rest' },
-            { name: 'ecommerce-app', description: 'Aplicación de e-commerce con Next.js', language: 'TypeScript', stars: 5, url: 'https://github.com/gpb-industries/ecommerce' },
-            { name: 'dashboard-admin', description: 'Panel de administración con React y Charts', language: 'JavaScript', stars: 2, url: 'https://github.com/gpb-industries/dashboard' },
-            { name: 'mobile-app', description: 'Aplicación móvil multiplataforma con React Native', language: 'JavaScript', stars: 1, url: 'https://github.com/gpb-industries/mobile' }
-        ];
-
-        function renderProjects(projects) {
-            const grid = document.getElementById('projects-grid');
-            grid.innerHTML = projects.map(repo => `
-                <article class="project-card glass-card rounded-2xl overflow-hidden">
-                    <div class="h-40 bg-gradient-to-br from-brand-500/10 via-brand-500/10 to-brand-500/10 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-500/20 flex items-center justify-center">
-                            <svg class="w-8 h-8 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                            </svg>
-                        </div>
+            grid.innerHTML = projects.map(p => `
+                <article class="glass-card rounded-2xl overflow-hidden">
+                    <div class="h-40 bg-gradient-to-br from-purple-500/10 to-pink-500/10 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-lg font-semibold text-white truncate">${repo.name}</h3>
-                            ${(repo.stars || repo.stargazers_count) > 0 ? `<span class="text-xs text-gray-500 flex items-center gap-1">
-                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                                ${repo.stars || repo.stargazers_count}</span>` : ''}
-                        </div>
-                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">${repo.description || 'Sin descripción'}</p>
+                        <h3 class="text-lg font-semibold text-white mb-2">${p.name}</h3>
+                        <p class="text-gray-400 text-sm mb-4">${p.description}</p>
                         <div class="flex items-center justify-between">
-                            ${repo.language ? `<span class="px-3 py-1 text-xs rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20">${repo.language}</span>` : '<span></span>'}
-                            <a href="${repo.url || repo.html_url}" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-brand-300 text-sm flex items-center gap-1">
-                                Ver en GitHub
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                            </a>
+                            <span class="px-3 py-1 text-xs rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">${p.language}</span>
+                            <a href="${p.url}" class="text-purple-400 text-sm hover:underline">Ver proyecto</a>
                         </div>
                     </div>
                 </article>
             `).join('');
-
-            grid.querySelectorAll('article').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.6s ease';
-                observer.observe(card);
-            });
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Cargando proyectos...');
-            renderProjects(sampleProjects);
-            console.log('Proyectos cargados:', sampleProjects.length);
+        loadProjects();
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const status = document.getElementById('form-status');
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.textContent = 'Enviar mensaje';
+                btn.disabled = false;
+                status.textContent = '¡Gracias! Te contactaremos pronto.';
+                status.className = 'text-sm text-center text-green-400 mt-2';
+                status.classList.remove('hidden');
+                e.target.reset();
+            }, 1500);
         });
     </script>
 </body>
