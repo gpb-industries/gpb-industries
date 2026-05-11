@@ -139,6 +139,19 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
         }
 
         .btn-primary:hover {
@@ -146,15 +159,39 @@
             box-shadow: 0 10px 40px rgba(14, 165, 233, 0.35);
         }
 
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
         .btn-secondary {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(6, 182, 212, 0.5));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(14, 165, 233, 0.5);
+        }
+
+        .btn-secondary:hover::before {
+            opacity: 1;
         }
 
         .section-padding {
@@ -306,6 +343,7 @@
             z-index: 9999;
             background: #0a0a0f;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             transition: opacity 0.8s ease, visibility 0.8s ease;
@@ -316,17 +354,92 @@
             visibility: hidden;
         }
 
-        .loader {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 3px solid rgba(168, 85, 247, 0.1);
-            border-top-color: var(--primary);
-            animation: spin 1s linear infinite;
+        .splash-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 60px rgba(168, 85, 247, 0.2), 0 0 100px rgba(236, 72, 153, 0.1);
         }
 
-        @keyframes spin {
+        .splash-logo::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.4), transparent 30%);
+            animation: rotate-splash 2s linear infinite;
+        }
+
+        .splash-logo::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #0a0a0f 0%, #121218 100%);
+        }
+
+        @keyframes rotate-splash {
             to { transform: rotate(360deg); }
+        }
+
+        .splash-logo-text {
+            position: relative;
+            z-index: 1;
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8)); }
+        }
+
+        .splash-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .splash-subtext {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.2em;
+        }
+
+        .splash-progress {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-top: 32px;
+            overflow: hidden;
+        }
+
+        .splash-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #a855f7, #ec4899, #06b6d4);
+            border-radius: 10px;
+            width: 0%;
+            animation: load-progress 2s ease-out forwards;
+        }
+
+        @keyframes load-progress {
+            to { width: 100%; }
         }
 
         .back-to-top {
@@ -419,11 +532,189 @@
             }
             html { scroll-behavior: auto; }
         }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulse-glow-hero 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow-hero {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+        }
+
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+
+        .service-card-glow {
+            position: absolute;
+            bottom: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .glass-card:hover .service-card-glow {
+            opacity: 1;
+        }
+
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            font-weight: 800;
+            font-size: 14px;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-glass {
+            position: relative;
+        }
+
+        .nav-glass::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.9) 0%, rgba(10, 10, 15, 0.7) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.3), rgba(6, 182, 212, 0.5));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .testimonial-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 120px;
+            font-family: Georgia, serif;
+            color: rgba(168, 85, 247, 0.1);
+            line-height: 1;
+        }
+
+        .badge-glow {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: float-blob 10s ease-in-out infinite;
+        }
+
+        @keyframes float-blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <div id="loading-screen" role="status" aria-label="Cargando"><div class="loader"></div></div>
+    <div id="loading-screen" role="status" aria-label="Cargando">
+        <div class="splash-logo">
+            <span class="splash-logo-text">GP</span>
+        </div>
+        <div class="splash-text">GPB-industries</div>
+        <div class="splash-subtext">Innovación tecnológica</div>
+        <div class="splash-progress">
+            <div class="splash-progress-bar"></div>
+        </div>
+    </div>
     <div id="canvas-container" aria-hidden="true"></div>
     <div class="noise-overlay" aria-hidden="true"></div>
 
@@ -437,7 +728,10 @@
         <nav class="fixed top-0 left-0 right-0 z-50 nav-glass" role="navigation" aria-label="Navegación principal">
             <div class="absolute inset-0 glass-strong"></div>
             <div class="relative max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#inicio" class="text-xl font-bold text-gradient" aria-label="GPB Industries - Inicio">GPB Industries</a>
+                <a href="#inicio" class="logo-brand" aria-label="GPB Industries - Inicio">
+                    <div class="logo-icon">GP</div>
+                    <span class="text-xl font-bold text-gradient">GPB Industries</span>
+                </a>
 
                 <div class="hidden md:flex gap-10">
                     <a href="#inicio" class="nav-link">Inicio</a>
@@ -471,14 +765,17 @@
     <main>
         <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-labelledby="hero-title">
             <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-                <div class="gradient-orb w-[500px] h-[500px] bg-brand-500/20 -top-32 -right-32"></div>
-                <div class="gradient-orb w-[400px] h-[400px] bg-brand-500/20 -bottom-32 -left-32" style="animation-delay: -4s;"></div>
+                <div class="grid-pattern"></div>
+                <div class="hero-glow"></div>
+                <div class="blob w-[400px] h-[400px] bg-brand-500/20 -top-40 -right-40"></div>
+                <div class="blob w-[350px] h-[350px] bg-brand-500/15 -bottom-32 -left-32" style="animation-delay: -3s;"></div>
+                <div class="blob w-[250px] h-[250px] bg-cyan-500/10 top-1/2 left-1/4" style="animation-delay: -5s;"></div>
             </div>
 
             <div class="relative max-w-5xl mx-auto text-center px-6">
-                <div class="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8">
-                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse" aria-hidden="true"></span>
-                    <span class="text-sm text-gray-300">Transformando ideas en realidad</span>
+                <div class="inline-flex items-center gap-2 px-5 py-2.5 glass rounded-full mb-8 badge-glow">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-400 animate-pulse" aria-hidden="true"></span>
+                    <span class="text-sm text-gray-300 font-medium">Transformando ideas en realidad</span>
                 </div>
 
                 <h1 id="hero-title" class="hero-title mb-8">
@@ -532,15 +829,16 @@
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-                    <article class="glass-card p-8 rounded-2xl">
-                        <div class="feature-icon mb-6">
+                    <article class="glass-card p-8 rounded-2xl gradient-border shimmer">
+                        <div class="service-card-glow"></div>
+                        <div class="feature-icon mb-6 relative z-10">
                             <svg class="w-7 h-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0 3-4.03 3-9s-1.343-9-3-9m-9 9a9 9 0 019-9"/>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-white mb-3">Desarrollo Web</h3>
-                        <p class="text-gray-400 mb-6">Creamos sitios web modernos, responsivos y optimizados para SEO. Utilizamos las últimas tecnologías para garantizar rendimiento excepcional.</p>
-                        <ul class="space-y-2 text-sm text-gray-500">
+                        <h3 class="text-xl font-semibold text-white mb-3 relative z-10">Desarrollo Web</h3>
+                        <p class="text-gray-400 mb-6 relative z-10">Creamos sitios web modernos, responsivos y optimizados para SEO. Utilizamos las últimas tecnologías para garantizar rendimiento excepcional.</p>
+                        <ul class="space-y-2 text-sm text-gray-500 relative z-10">
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>React / Next.js / Vue.js</li>
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Diseño responsivo</li>
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>SEO avanzado</li>
@@ -548,15 +846,16 @@
                         </ul>
                     </article>
 
-                    <article class="glass-card p-8 rounded-2xl">
-                        <div class="feature-icon mb-6">
+                    <article class="glass-card p-8 rounded-2xl gradient-border shimmer">
+                        <div class="service-card-glow"></div>
+                        <div class="feature-icon mb-6 relative z-10">
                             <svg class="w-7 h-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-white mb-3">Desarrollo Software</h3>
-                        <p class="text-gray-400 mb-6">Desarrollamos aplicaciones personalizadas adaptadas a tus necesidades específicas. Desde APIs robustas hasta sistemas complejos.</p>
-                        <ul class="space-y-2 text-sm text-gray-500">
+                        <h3 class="text-xl font-semibold text-white mb-3 relative z-10">Desarrollo Software</h3>
+                        <p class="text-gray-400 mb-6 relative z-10">Desarrollamos aplicaciones personalizadas adaptadas a tus necesidades específicas. Desde APIs robustas hasta sistemas complejos.</p>
+                        <ul class="space-y-2 text-sm text-gray-500 relative z-10">
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Aplicaciones web</li>
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Apps móviles (iOS/Android)</li>
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>APIs RESTful & GraphQL</li>
@@ -564,15 +863,16 @@
                         </ul>
                     </article>
 
-                    <article class="glass-card p-8 rounded-2xl">
-                        <div class="feature-icon mb-6">
+                    <article class="glass-card p-8 rounded-2xl gradient-border shimmer">
+                        <div class="service-card-glow"></div>
+                        <div class="feature-icon mb-6 relative z-10">
                             <svg class="w-7 h-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-white mb-3">Consultoría Tech</h3>
-                        <p class="text-gray-400 mb-6">Asesoría estratégica para transformar digitalmente tu empresa. Optimizamos procesos y mejoramos la eficiencia operativa.</p>
-                        <ul class="space-y-2 text-sm text-gray-500">
+                        <h3 class="text-xl font-semibold text-white mb-3 relative z-10">Consultoría Tech</h3>
+                        <p class="text-gray-400 mb-6 relative z-10">Asesoría estratégica para transformar digitalmente tu empresa. Optimizamos procesos y mejoramos la eficiencia operativa.</p>
+                        <ul class="space-y-2 text-sm text-gray-500 relative z-10">
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Arquitectura tecnológica</li>
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>DevOps & Cloud (AWS/GCP/Azure)</li>
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-500" aria-hidden="true"></span>Code review & auditing</li>
@@ -791,7 +1091,10 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-center md:text-left">
-                    <div class="text-xl font-bold text-gradient mb-2">GPB Industries</div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="logo-icon" style="width:28px;height:28px;font-size:11px;">GP</div>
+                        <span class="text-xl font-bold text-gradient">GPB Industries</span>
+                    </div>
                     <p class="text-gray-500 text-sm">Tecnología con propósito</p>
                 </div>
 
@@ -975,6 +1278,24 @@
                 mobileMenu.classList.add('hidden');
                 menuToggle.setAttribute('aria-expanded', 'false');
             });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card, .section-title, .feature-icon').forEach(el => {
+            el.classList.add('fade-in-up');
+            observer.observe(el);
         });
 
         document.getElementById('contact-form')?.addEventListener('submit', (e) => {
